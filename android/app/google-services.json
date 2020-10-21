@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "740965517026",
+    "firebase_url": "https://celtic-iridium-290215.firebaseio.com",
+    "project_id": "celtic-iridium-290215",
+    "storage_bucket": "celtic-iridium-290215.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740965517026:android:080e881462c69815fb00bb",
+        "android_client_info": {
+          "package_name": "com.example.ictv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "740965517026-i07k85n0qsfritb2336lk4uvdhm21v1e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEVaBeTMD8Jud9Nml0K-XMwsp4Fla9CdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "740965517026-i07k85n0qsfritb2336lk4uvdhm21v1e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "740965517026-7is4uor7as3j2v9s53u432niab0q0klc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ictv"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
