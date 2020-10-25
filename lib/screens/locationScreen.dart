@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ictv/widgets/buildMenu.dart';
 import 'package:liquid_ui/liquid_ui.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
@@ -14,25 +15,26 @@ class locationScreen extends StatelessWidget {
       materialApp: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'ICTV',
-          theme: ThemeData(
-              brightness: Brightness.dark, primaryColor: Colors.white),
-          home: companeis(username)),
+          theme:
+              ThemeData(brightness: Brightness.dark, accentColor: Colors.white),
+          home: Location(username)),
     );
   }
 }
 
 // ignore: camel_case_types
-class companeis extends StatefulWidget {
+class Location extends StatefulWidget {
   // ignore: type_init_formals
-  companeis(String this.username, {Key key}) : super(key: key);
+  Location(String this.username, {Key key}) : super(key: key);
   final String username;
 
   @override
-  _companeisState createState() => _companeisState();
+  _LocationState createState() => _LocationState();
 }
 
 // ignore: camel_case_types
-class _companeisState extends State<companeis> {
+class _LocationState extends State<Location> {
+  TextEditingController locationEditor = new TextEditingController();
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
   @override
   Widget build(BuildContext context) {
@@ -73,6 +75,59 @@ class _companeisState extends State<companeis> {
                   height: MediaQuery.of(context).size.height,
                   fit: BoxFit.cover,
                 ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Spacer(
+                      flex: 2,
+                    ),
+                    Flexible(
+                      child: Row(
+                        children: [
+                          Flexible(
+                            flex: 8,
+                            child: TextField(
+                              maxLines: null,
+                              expands: true,
+                              keyboardType: TextInputType.emailAddress,
+                              controller: locationEditor,
+                              scrollPadding: EdgeInsets.only(top: 15),
+                              textAlign: TextAlign.start,
+                              style: GoogleFonts.sansita(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 19),
+                              decoration: InputDecoration(
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.black, width: 2.5),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.black, width: 2.5),
+                                  ),
+                                  prefixIcon: Icon(Icons.search),
+                                  alignLabelWithHint: true,
+                                  labelText: "Location",
+                                  labelStyle: GoogleFonts.indieFlower(
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.black),
+                                  hintStyle: GoogleFonts.indieFlower(
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.black),
+                                  hintText: "Write Your Loaction Here"),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Spacer(
+                      flex: 8,
+                    )
+                  ],
+                )
               ],
             ),
           )),
