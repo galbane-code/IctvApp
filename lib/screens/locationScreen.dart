@@ -4,6 +4,8 @@ import 'package:ictv/widgets/Location.dart';
 import 'package:ictv/widgets/buildMenu.dart';
 import 'package:liquid_ui/liquid_ui.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
+import 'package:dio/dio.dart';
+import 'package:ictv/credentials.dart';
 
 // ignore: camel_case_types
 class locationScreen extends StatelessWidget {
@@ -46,6 +48,33 @@ class _LocationState extends State<Location> {
 
   TextEditingController locationEditor = new TextEditingController();
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void getLocationResults(String text) async {
+    if (text.isEmpty) {
+      setState(() {});
+    } else {
+      String baseUrl =
+          "https://maps.googleapis.com/maps/api/place/autocomplete/json";
+      String type = "address";
+      String requset = '$baseUrl?input=$text&key=$PLACES_API&type=$type';
+      Response response = await Dio().get(requset);
+      final predictions = response.data['predictions'];
+      suggestions = new List<LocationWidget>();
+
+      for (var i = 0; i < predictions.length; i++) {
+        String name = predictions[i]['description'];
+        List<String> values = name.split(',');
+        suggestions.add(LocationWidget(values[2], values[1], values[0]));
+      }
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SideMenu(
@@ -99,6 +128,9 @@ class _LocationState extends State<Location> {
                         children: [
                           Flexible(
                             child: TextField(
+                              onChanged: (text) {
+                                getLocationResults(text);
+                              },
                               maxLines: null,
                               expands: true,
                               keyboardType: TextInputType.emailAddress,
@@ -136,7 +168,8 @@ class _LocationState extends State<Location> {
                     Flexible(
                       flex: 15,
                       child: ListView.builder(
-                          padding: EdgeInsets.only(bottom: 18, top: 18),
+                          padding: EdgeInsets.only(
+                              bottom: 18, top: 18, left: 2, right: 2),
                           itemCount: suggestions.length,
                           itemBuilder: (BuildContext ctxt, int index) {
                             return suggestions[index];
