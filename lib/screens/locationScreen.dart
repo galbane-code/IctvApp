@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ictv/widgets/Location.dart';
@@ -46,12 +48,32 @@ class _LocationState extends State<Location> {
     LocationWidget("ישראל", "דימונה", "הר מירון 3")
   ];
 
+  Timer timerMoney;
+  bool timerbool = false;
   TextEditingController locationEditor = new TextEditingController();
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
 
   @override
   void initState() {
     super.initState();
+    locationEditor.addListener(_onSearchChaned);
+  }
+
+  void dispose() {
+    locationEditor.removeListener(_onSearchChaned);
+    timerbool = true;
+    locationEditor.dispose();
+    super.dispose();
+  }
+
+  _onSearchChaned() {
+    if (timerbool) {
+      timerMoney.cancel();
+    } else {
+      timerMoney = Timer(const Duration(milliseconds: 500), () {
+        getLocationResults(locationEditor.text);
+      });
+    }
   }
 
   void getLocationResults(String text) async {
@@ -128,9 +150,6 @@ class _LocationState extends State<Location> {
                         children: [
                           Flexible(
                             child: TextField(
-                              onChanged: (text) {
-                                getLocationResults(text);
-                              },
                               maxLines: null,
                               expands: true,
                               keyboardType: TextInputType.emailAddress,
