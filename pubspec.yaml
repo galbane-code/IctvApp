@@ -40,7 +40,7 @@ dependencies:
   liquid_ui: ^1.0.0+9
   animated_headline: ^1.1.1
   carousel_slider: ^2.3.1
-
+  dio: ^3.0.10
 
 dev_dependencies:
   flutter_test:
