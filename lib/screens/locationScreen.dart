@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ictv/widgets/Location.dart';
 import 'package:ictv/widgets/buildMenu.dart';
 import 'package:liquid_ui/liquid_ui.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
@@ -34,6 +35,15 @@ class Location extends StatefulWidget {
 
 // ignore: camel_case_types
 class _LocationState extends State<Location> {
+  List<LocationWidget> suggestions = [
+    LocationWidget("ישראל", "דימונה", "הר מירון 3"),
+    LocationWidget("ישראל", "דימונה", "סחלבן החורש 53"),
+    LocationWidget("ישראל", "רמת גן", "אלכסנדר 8"),
+    LocationWidget("ישראל", "דימונה", "הר ארבל 3"),
+    LocationWidget("ישראל", "דימונה", "הר נבו 3"),
+    LocationWidget("ישראל", "דימונה", "הר מירון 3")
+  ];
+
   TextEditingController locationEditor = new TextEditingController();
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
   @override
@@ -81,20 +91,20 @@ class _LocationState extends State<Location> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Spacer(
-                      flex: 2,
+                      flex: 3,
                     ),
                     Flexible(
+                      flex: 3,
                       child: Row(
                         children: [
                           Flexible(
-                            flex: 8,
                             child: TextField(
                               maxLines: null,
                               expands: true,
                               keyboardType: TextInputType.emailAddress,
                               controller: locationEditor,
                               scrollPadding: EdgeInsets.only(top: 15),
-                              textAlign: TextAlign.start,
+                              textAlign: TextAlign.center,
                               style: GoogleFonts.sansita(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -113,7 +123,7 @@ class _LocationState extends State<Location> {
                                   labelText: "Location",
                                   labelStyle: GoogleFonts.indieFlower(
                                       fontWeight: FontWeight.w800,
-                                      color: Colors.black),
+                                      color: Colors.white),
                                   hintStyle: GoogleFonts.indieFlower(
                                       fontWeight: FontWeight.w800,
                                       color: Colors.black),
@@ -123,8 +133,17 @@ class _LocationState extends State<Location> {
                         ],
                       ),
                     ),
+                    Flexible(
+                      flex: 15,
+                      child: ListView.builder(
+                          padding: EdgeInsets.only(bottom: 18, top: 18),
+                          itemCount: suggestions.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return suggestions[index];
+                          }),
+                    ),
                     Spacer(
-                      flex: 8,
+                      flex: 5,
                     )
                   ],
                 )
