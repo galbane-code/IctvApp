@@ -1,13 +1,14 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ictv/widgets/Location.dart';
+import 'package:ictv/widgets/RaisedGradientButton.dart';
 import 'package:ictv/widgets/buildMenu.dart';
 import 'package:liquid_ui/liquid_ui.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:dio/dio.dart';
 import 'package:ictv/credentials.dart';
+import 'package:geocoder/geocoder.dart';
 
 // ignore: camel_case_types
 class locationScreen extends StatelessWidget {
@@ -28,10 +29,25 @@ class locationScreen extends StatelessWidget {
 }
 
 // ignore: camel_case_types
+// ignore: must_be_immutable
 class Location extends StatefulWidget {
   // ignore: type_init_formals
   Location(String this.username, {Key key}) : super(key: key);
   final String username;
+  bool _choosenPlace = false;
+
+  int indexWidget = -9;
+  bool turnOn = false;
+  LocationWidget choosenPlace;
+
+  List<LocationWidget> suggestions = [
+    LocationWidget(Colors.white, "ישראל", "תל אביב יפו", "דיזנגוף 45"),
+    LocationWidget(Colors.white, "ישראל", "תל אביב יפו", "הרברט סמואל 10"),
+    LocationWidget(Colors.white, "5 ישראל", "ירושלים", "בלפור"),
+    LocationWidget(Colors.white, "ישראל", "באר שבע", "רגר 148"),
+    LocationWidget(Colors.white, "ישראל", "רמת גן", "אלכסנדר"),
+    LocationWidget(Colors.white, "ישראל", "דימונה", "הר מירון 5")
+  ];
 
   @override
   _LocationState createState() => _LocationState();
@@ -39,15 +55,6 @@ class Location extends StatefulWidget {
 
 // ignore: camel_case_types
 class _LocationState extends State<Location> {
-  List<LocationWidget> suggestions = [
-    LocationWidget("ישראל", "דימונה", "הר מירון 3"),
-    LocationWidget("ישראל", "דימונה", "סחלבן החורש 53"),
-    LocationWidget("ישראל", "רמת גן", "אלכסנדר 8"),
-    LocationWidget("ישראל", "דימונה", "הר ארבל 3"),
-    LocationWidget("ישראל", "דימונה", "הר נבו 3"),
-    LocationWidget("ישראל", "דימונה", "הר מירון 3")
-  ];
-
   Timer timerMoney;
   bool timerbool = false;
   TextEditingController locationEditor = new TextEditingController();
@@ -76,6 +83,30 @@ class _LocationState extends State<Location> {
     }
   }
 
+  void changeColorOne() {
+    if (this.widget.turnOn) {
+      for (var i = 0; i < this.widget.suggestions.length; i++) {
+        String country = this.widget.suggestions[i].country;
+        String city = this.widget.suggestions[i].city;
+        String streetAndNumber = this.widget.suggestions[i].streetAndNumber;
+        if (i == this.widget.indexWidget) {
+          this.widget.suggestions[i] =
+              LocationWidget(Colors.white, country, city, streetAndNumber);
+        }
+      }
+    } else {
+      for (var i = 0; i < this.widget.suggestions.length; i++) {
+        String country = this.widget.suggestions[i].country;
+        String city = this.widget.suggestions[i].city;
+        String streetAndNumber = this.widget.suggestions[i].streetAndNumber;
+        if (i == this.widget.indexWidget) {
+          this.widget.suggestions[i] =
+              LocationWidget(Colors.black, country, city, streetAndNumber);
+        }
+      }
+    }
+  }
+
   void getLocationResults(String text) async {
     if (text.isEmpty) {
       setState(() {});
@@ -86,13 +117,24 @@ class _LocationState extends State<Location> {
       String requset = '$baseUrl?input=$text&key=$PLACES_API&type=$type';
       Response response = await Dio().get(requset);
       final predictions = response.data['predictions'];
-      suggestions = new List<LocationWidget>();
 
-      for (var i = 0; i < predictions.length; i++) {
-        String name = predictions[i]['description'];
-        List<String> values = name.split(',');
-        suggestions.add(LocationWidget(values[2], values[1], values[0]));
+      this.widget.suggestions = new List<LocationWidget>();
+
+      if (predictions == null || predictions.length == 0) {
+        this.widget.suggestions = [];
+      } else {
+        for (var i = 0; i < predictions.length; i++) {
+          final query = predictions[i]['description'];
+          var addresses = await Geocoder.local.findAddressesFromQuery(query);
+          var first = addresses.first;
+          print("${first.featureName} : ${first.coordinates}");
+          String name = predictions[i]['description'];
+          List<String> values = name.split(',');
+          this.widget.suggestions.add(
+              LocationWidget(Colors.white, values[2], values[1], values[0]));
+        }
       }
+
       setState(() {});
     }
   }
@@ -171,10 +213,10 @@ class _LocationState extends State<Location> {
                                   ),
                                   prefixIcon: Icon(Icons.search),
                                   alignLabelWithHint: true,
-                                  labelText: "Location",
+                                  labelText: "   Location Search",
                                   labelStyle: GoogleFonts.indieFlower(
                                       fontWeight: FontWeight.w800,
-                                      color: Colors.white),
+                                      color: Colors.black),
                                   hintStyle: GoogleFonts.indieFlower(
                                       fontWeight: FontWeight.w800,
                                       color: Colors.black),
@@ -189,13 +231,71 @@ class _LocationState extends State<Location> {
                       child: ListView.builder(
                           padding: EdgeInsets.only(
                               bottom: 18, top: 18, left: 2, right: 2),
-                          itemCount: suggestions.length,
+                          itemCount: this.widget.suggestions.length,
                           itemBuilder: (BuildContext ctxt, int index) {
-                            return suggestions[index];
+                            return InkWell(
+                                child: this.widget.suggestions[index],
+                                onTap: () {
+                                  if (this.widget.turnOn) {
+                                    if (index == this.widget.indexWidget) {
+                                      this.widget._choosenPlace = false;
+                                      this.widget.indexWidget = index;
+                                      changeColorOne();
+                                      this.widget.choosenPlace =
+                                          this.widget.suggestions[index];
+                                      this.widget.turnOn = false;
+                                      this.widget.indexWidget = -9;
+
+                                      setState(() {});
+                                    }
+                                  } else {
+                                    this.widget._choosenPlace = true;
+                                    this.widget.indexWidget = index;
+                                    changeColorOne();
+                                    this.widget.choosenPlace = null;
+                                    this.widget.turnOn = true;
+
+                                    setState(() {});
+                                  }
+                                });
                           }),
                     ),
-                    Spacer(
+                    Flexible(
                       flex: 5,
+                      child: this.widget._choosenPlace
+                          ? Container(
+                              child: AnimatedOpacity(
+                                opacity: this.widget._choosenPlace ? 1.0 : 0.0,
+                                duration: Duration(milliseconds: 2500),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Spacer(),
+                                    Flexible(
+                                      flex: 3,
+                                      child: RaisedGradientButton(
+                                        child: Text(
+                                          'Review Your ICTV',
+                                          style: GoogleFonts.indieFlower(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        gradient:
+                                            LinearGradient(colors: <Color>[
+                                          Color(0xffD1D1CC),
+                                          Colors.white70,
+                                          Colors.white70,
+                                          Colors.white70,
+                                          Color(0xffD1D1CC),
+                                        ]),
+                                      ),
+                                    ),
+                                    Spacer(),
+                                  ],
+                                ),
+                              ),
+                            )
+                          : Container(),
                     )
                   ],
                 )

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LocationWidget extends StatelessWidget {
+class LocationWidget extends StatefulWidget {
   LocationWidget(
+    this.color,
     this.country,
     this.city,
     this.streetAndNumber, {
@@ -12,7 +13,13 @@ class LocationWidget extends StatelessWidget {
   final String country;
   final String city;
   final String streetAndNumber;
+  final Color color;
 
+  @override
+  _LocationWidgetState createState() => _LocationWidgetState();
+}
+
+class _LocationWidgetState extends State<LocationWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,17 +36,17 @@ class LocationWidget extends StatelessWidget {
             children: <Widget>[
               Flexible(
                   child: Text(
-                streetAndNumber,
+                widget.streetAndNumber,
                 style: GoogleFonts.sansita(
-                    color: Colors.white,
+                    color: this.widget.color,
                     fontWeight: FontWeight.w900,
                     fontSize: 25),
               )),
               Flexible(
                   child: Text(
-                country + "," + city,
+                widget.country + "," + widget.city,
                 style: GoogleFonts.sansita(
-                    color: Colors.white,
+                    color: this.widget.color,
                     fontWeight: FontWeight.w400,
                     fontSize: 18),
               ))
@@ -48,7 +55,11 @@ class LocationWidget extends StatelessWidget {
         ),
         Flexible(
           flex: 4,
-          child: Icon(Icons.location_on_sharp, size: 35),
+          child: Icon(
+            Icons.location_on_sharp,
+            size: 35,
+            color: this.widget.color,
+          ),
         )
       ],
     );
