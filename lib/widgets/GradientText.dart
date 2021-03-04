@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+/*
+  This widget is for the titles in the app    
+*/
 
 class GradientText extends StatelessWidget {
   GradientText(
@@ -17,7 +20,8 @@ class GradientText extends StatelessWidget {
               Rect.fromLTWH(0, 0, bounds.width, bounds.height),
             ),
         child: Text(text,
-            style: GoogleFonts.dancingScript(
+            style: TextStyle(
+              fontStyle: FontStyle.normal,
               fontSize: 45,
               fontWeight: FontWeight.w900,
             )));

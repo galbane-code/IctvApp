@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/*
+  This class is for the representation of the location in the 
+  search location page .     
+*/
+
 class LocationWidget extends StatefulWidget {
   LocationWidget(
     this.color,

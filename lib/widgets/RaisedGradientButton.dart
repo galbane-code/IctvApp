@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:ictv/ColorsProject.dart';
+
+/*
+  This widget is for the buttoms in the app    
+*/
 
 class RaisedGradientButton extends StatelessWidget {
   final Widget child;
   final Gradient gradient;
   final double width;
-  final double height;
   final Function onPressed;
 
   const RaisedGradientButton({
@@ -12,7 +16,6 @@ class RaisedGradientButton extends StatelessWidget {
     @required this.child,
     this.gradient,
     this.width = double.infinity,
-    this.height = 50.0,
     this.onPressed,
   }) : super(key: key);
 
@@ -20,7 +23,6 @@ class RaisedGradientButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      height: 50.0,
       decoration: BoxDecoration(gradient: gradient, boxShadow: [
         BoxShadow(
           color: Colors.grey[500],
@@ -31,6 +33,7 @@ class RaisedGradientButton extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
+            highlightColor: primaryColor,
             onTap: onPressed,
             child: Center(
               child: child,

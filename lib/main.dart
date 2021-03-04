@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ictv/screens/OnBoardingScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:logger/logger.dart';
+
+// the log of the app
+var logger = Logger(
+  filter: null,
+  printer: PrettyPrinter(),
+  output: null,
+);
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +41,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -1,7 +1,15 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../credentials.dart';
 
-void signUp(user, password, context) async {
+/*
+  The Function try to sign up the user in the firebase auth system.
+  input: {TextEditingController user, TextEditingController password, BuildContext context, TextEditingController name, Gender gender}
+  return : 
+*/
+
+void signUp(user, password, context, name, gender) async {
   String emailS = user.text.trim();
   String passwordS = password.text;
 
@@ -10,14 +18,26 @@ void signUp(user, password, context) async {
     String alertext = "Enter the Details Again";
     String leftbuttom = "Cancel";
     String rightbuttom = "OK";
-    PopAlert(title, alertext, leftbuttom, rightbuttom, context);
+    popAlert(title, alertext, leftbuttom, rightbuttom, context);
   } else {
     try {
       // ignore: unused_local_variable
       final UserCredential userC = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: emailS, password: passwordS);
 
-      PopAlert("Sign UP succeeded", "", "", "OK", context);
+      DatabaseReference _reference = FirebaseDatabase.instance
+          .reference()
+          .child("Users" + "/" + userC.user.uid);
+
+      Map<String, dynamic> userData = {
+        "fullName": name.text,
+        "Gender": gender.toString(),
+        "Address": ""
+      };
+
+      _reference.set(userData);
+
+      popAlert("Sign UP succeeded", "", "", "OK", context);
     } on FirebaseAuthException catch (e) {
       showDialog(
           context: context,
@@ -48,10 +68,16 @@ void signUp(user, password, context) async {
   }
 }
 
-// ignore: non_constant_identifier_names
-void PopAlert(String title, String alertext, String leftbuttom,
-    String rightbuttom, context) {
-  showDialog(
+/*
+  The Function Pops An Alert Dailog to present the messege and the buttoms according to the input. 
+  input: {String title, String alertext, String leftbuttom, String rightbuttom, BuildContext context}
+  return : 
+*/
+
+// ignore: missing_return
+Future<void> popAlert(String title, String alertext, String leftbuttom,
+    String rightbuttom, context) async {
+  await showDialog(
       context: context,
       builder: (ctx) {
         return AlertDialog(
@@ -63,11 +89,13 @@ void PopAlert(String title, String alertext, String leftbuttom,
           actions: <Widget>[
             FlatButton(
                 onPressed: () {
+                  locationIsUpdated = false;
                   Navigator.of(ctx).pop();
                 },
                 child: Text(leftbuttom)),
             FlatButton(
                 onPressed: () {
+                  locationIsUpdated = true;
                   Navigator.of(ctx).pop();
                 },
                 child: Text(rightbuttom))

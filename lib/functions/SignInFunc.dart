@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ictv/widgets/PopAlert.dart';
 
+/*
+  The Function try to sign in the user in the firebase auth system.
+  input: {TextEditingController user, TextEditingController password, BuildContext context, UserCredential userc}
+  return : Future<UserCredential>
+*/
+
 Future<UserCredential> signIn(user, password, context, userc) async {
   String emailS = user.text.trim();
   String passwordS = password.text;

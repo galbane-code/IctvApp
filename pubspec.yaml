@@ -42,6 +42,19 @@ dependencies:
   carousel_slider: ^2.3.1
   dio: ^3.0.10
   geocoder: ^0.2.1
+  bordered_text: ^1.0.1
+  shared_preferences: ^0.5.12+4
+  connectivity: ^2.0.2
+  cached_network_image: ^2.4.1
+  firebase_database: ^4.4.0
+  flutter_simple_rating_bar: ^0.0.3
+  geolocator: ^6.1.14
+  permission_handler: ^5.1.0+2
+  rating_dialog: ^1.0.0
+  toast: ^0.1.5
+  logger: ^0.9.4
+
+
 
 dev_dependencies:
   flutter_test:
