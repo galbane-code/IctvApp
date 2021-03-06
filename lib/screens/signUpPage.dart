@@ -261,8 +261,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                                 alignment: Alignment.center,
                                 child: TextField(
-                                  maxLines: null,
-                                  expands: true,
+                                  obscureText: _isObscure,
                                   keyboardType: TextInputType.text,
                                   controller: password,
                                   textAlign: TextAlign.start,

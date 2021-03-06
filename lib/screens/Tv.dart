@@ -94,7 +94,7 @@ class _TvState extends State<Tv> {
                                             Future.delayed(
                                                 const Duration(
                                                     milliseconds: 400), () {
-                                              if (!checkedLocation || rated) {
+                                              if (!checkedLocation && rated) {
                                                 Toast.show(
                                                     "Your Location is not near the Address",
                                                     context,

@@ -14,7 +14,6 @@ import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:dio/dio.dart';
 import 'package:ictv/credentials.dart';
 import 'package:geocoder/geocoder.dart';
-
 import '../main.dart';
 
 class LocationScreen extends StatelessWidget {
@@ -402,6 +401,8 @@ class _LocationState extends State<Location> {
                                                             userCredential
                                                                 .user.uid);
                                                 _reference.set(userData);
+                                                logger.i(
+                                                    "the user set his Address");
                                               }
                                             } else {
                                               var addressArr =
@@ -436,6 +437,8 @@ class _LocationState extends State<Location> {
                                                                   .user.uid);
                                                   _reference.set(userData);
                                                   locationIsUpdated = true;
+                                                  logger.i(
+                                                      "the user changed his Address");
                                                 } else {
                                                   locationIsUpdated = false;
                                                 }

@@ -95,7 +95,7 @@ class _CellularState extends State<Cellular> {
                                             Future.delayed(
                                                 const Duration(
                                                     milliseconds: 400), () {
-                                              if (!checkedLocation || rated) {
+                                              if (!checkedLocation && rated) {
                                                 Toast.show(
                                                     "Your Location is not near the Address",
                                                     context,

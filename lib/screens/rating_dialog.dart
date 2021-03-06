@@ -34,7 +34,6 @@ Future<dynamic> rating(context, String company, DatabaseReference _reference,
           accentColor: primaryColor, // optional
           onSubmitPressed: (int rating) async {
             // checks the locatin off the user
-
             if (await Permission.location.isGranted) {
               var currPosition = await determinePosition();
               var dist = Geolocator.distanceBetween(
@@ -44,11 +43,11 @@ Future<dynamic> rating(context, String company, DatabaseReference _reference,
                   coordinates.longitude);
               if (dist < 500) {
                 checkedLocation = true;
+                rated = true;
               }
             }
             if (checkedLocation) {
               // update the rate in the database
-              rated = true;
               double tempRanking = companiesData[company].ranking;
               int tempPeopleRanked = companiesData[company].peopleRanked;
 
@@ -66,6 +65,7 @@ Future<dynamic> rating(context, String company, DatabaseReference _reference,
                     " in the rating " +
                     rating.toString());
               });
+              rated = true;
             }
           },
         );

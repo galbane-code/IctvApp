@@ -146,7 +146,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     Spacer(
-                      flex: 8,
+                      flex: 9,
                     ),
                     Flexible(
                       flex: 17,
@@ -176,7 +176,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                             color: Colors.black,
                                           ),
                                         ],
-                                        fontSize: 40,
+                                        fontSize: 45,
                                         color: primaryColor,
                                         decoration: TextDecoration.none,
                                         decorationColor: Colors.white),
@@ -217,7 +217,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       flex: 5,
                     ),
                     Flexible(
-                        flex: 7,
+                        flex: 8,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -281,10 +281,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           ],
                         )),
                     Spacer(
-                      flex: 2,
+                      flex: 1,
                     ),
                     Flexible(
-                        flex: 7,
+                        flex: 9,
                         child: Row(
                           children: <Widget>[
                             Spacer(),
@@ -310,8 +310,6 @@ class _SignInScreenState extends State<SignInScreen> {
                                 ),
                                 alignment: Alignment.center,
                                 child: TextField(
-                                  //maxLines: null,
-                                  //expands: true,
                                   keyboardType: TextInputType.text,
                                   controller: password,
                                   textAlign: TextAlign.start,
@@ -364,7 +362,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ],
                         )),
                     Spacer(
-                      flex: 4,
+                      flex: 7,
                     ),
                     Flexible(
                         flex: 4,
@@ -390,7 +388,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ],
                         )),
                     Spacer(
-                      flex: 3,
+                      flex: 5,
                     ),
                     Flexible(
                         flex: 5,

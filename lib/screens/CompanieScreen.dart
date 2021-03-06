@@ -9,6 +9,7 @@ import 'package:ictv/widgets/PopAlert.dart';
 import 'package:ictv/widgets/buildMenu.dart';
 import 'package:liquid_ui/liquid_ui.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../credentials.dart';
 import '../main.dart';
@@ -59,6 +60,14 @@ class _Companies_screenState extends State<Companies_screen> {
     "https://img.wcdn.co.il/f_auto,w_1400,t_54/2/7/1/0/2710567-46.png",
     "https://simpel.co.il/wp-content/uploads/thumbs/ramilevilogo-page-ng9en8eixvujtxphsdx73333iuku47ovelkzqewhbg.png"
   ];
+  List<String> urlList = [
+    'https://www.kamaze.co.il/Companies/6372/Yes',
+    'https://www.kamaze.co.il/Companies/6245/Hot',
+    'https://www.kamaze.co.il/Companies/6244/Bezeq',
+    'https://www.kamaze.co.il/Companies/6236/Partner',
+    "https://www.kamaze.co.il/Companies/6252/Golan-Telecom",
+    "https://www.kamaze.co.il/Companies/6238/Ramy-Levi"
+  ];
 
   var boolList = [
     [false, false, true],
@@ -107,6 +116,12 @@ class _Companies_screenState extends State<Companies_screen> {
                                                     Color>(primaryColor),
                                           ),
                                         ),
+                                  onLongPress: () {
+                                    int index = imgList.indexOf(item);
+                                    if (connected) {
+                                      _launchURL(urlList[index]);
+                                    }
+                                  },
                                   onTap: () {
                                     if (_visibleTwo) {
                                       _visibleTwo = false;
@@ -353,3 +368,6 @@ class _Companies_screenState extends State<Companies_screen> {
     );
   }
 }
+
+void _launchURL(_url) async =>
+    await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
