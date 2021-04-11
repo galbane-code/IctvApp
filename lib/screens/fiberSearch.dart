@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'dart:collection';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ictv/ColorsProject.dart';
-import 'package:ictv/functions/SignUpFunc.dart';
-import 'package:ictv/screens/ictvScreen.dart';
+import 'package:ictv/screens/fiberView.dart';
 import 'package:ictv/widgets/Location.dart';
 import 'package:ictv/widgets/PopAlert.dart';
 import 'package:ictv/widgets/RaisedGradientButton.dart';
@@ -14,11 +12,10 @@ import 'package:liquid_ui/liquid_ui.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:dio/dio.dart';
 import 'package:ictv/credentials.dart';
-import 'package:geocoder/geocoder.dart';
 import '../main.dart';
 
-class LocationScreen extends StatelessWidget {
-  const LocationScreen({Key key}) : super(key: key);
+class FiberTest extends StatelessWidget {
+  const FiberTest({Key key}) : super(key: key);
 
   Widget build(BuildContext context) {
     return LiquidApp(
@@ -27,7 +24,7 @@ class LocationScreen extends StatelessWidget {
           title: 'ICTV',
           theme:
               ThemeData(brightness: Brightness.dark, accentColor: Colors.white),
-          home: Location()),
+          home: Fiber()),
     );
   }
 }
@@ -38,8 +35,8 @@ class LocationScreen extends StatelessWidget {
 */
 
 // ignore: must_be_immutable
-class Location extends StatefulWidget {
-  Location({Key key}) : super(key: key);
+class Fiber extends StatefulWidget {
+  Fiber({Key key}) : super(key: key);
   bool _choosenPlace = false;
 
   int indexWidget = -9;
@@ -47,19 +44,19 @@ class Location extends StatefulWidget {
   LocationWidget choosenPlace;
 
   List<LocationWidget> suggestions = [
-    LocationWidget(Colors.black, "Israel", "Tel Aviv", "דיזנגוף"),
-    LocationWidget(Colors.black, "Israel", "Tel Aviv", "הרברט סמואל"),
-    LocationWidget(Colors.black, "Israel", "Jerusalem", "בלפור"),
-    LocationWidget(Colors.black, "Israel", "Be'er Sheva", "רגר"),
-    LocationWidget(Colors.black, "Israel", "Ramat Gan", "אלכסנדר"),
-    LocationWidget(Colors.black, "Israel", "Dimona", "הר מירון")
+    LocationWidget(Colors.black, "Israel", "Tel Aviv", "דיזנגוף 24"),
+    LocationWidget(Colors.black, "Israel", "Tel Aviv", "הרברט סמואל 10"),
+    LocationWidget(Colors.black, "Israel", "Jerusalem", "בלפור 7"),
+    LocationWidget(Colors.black, "Israel", "Be'er Sheva", "יצחק אבינו 13"),
+    LocationWidget(Colors.black, "Israel", "Ramat Gan", "אלכסנדר 8"),
+    LocationWidget(Colors.black, "Israel", "Dimona", "הר ארבל 10")
   ];
 
   @override
-  _LocationState createState() => _LocationState();
+  _FiberState createState() => _FiberState();
 }
 
-class _LocationState extends State<Location> {
+class _FiberState extends State<Fiber> {
   TextEditingController user = new TextEditingController();
   TextEditingController password = new TextEditingController();
   Timer timerMoney;
@@ -130,12 +127,13 @@ class _LocationState extends State<Location> {
 
       if (predictions == null || predictions.length == 0) {
         this.widget.suggestions = [
-          LocationWidget(Colors.black, "Israel", "Tel Aviv", "דיזנגוף"),
-          LocationWidget(Colors.black, "Israel", "Tel Aviv", "הרברט סמואל"),
-          LocationWidget(Colors.black, "Israel", "Jerusalem", "בלפור"),
-          LocationWidget(Colors.black, "Israel", "Be'er Sheva", "רגר"),
-          LocationWidget(Colors.black, "Israel", "Ramat Gan", "אלכסנדר"),
-          LocationWidget(Colors.black, "Israel", "Dimona", "הר מירון")
+          LocationWidget(Colors.black, "Israel", "Tel Aviv", "דיזנגוף 24"),
+          LocationWidget(Colors.black, "Israel", "Tel Aviv", "הרברט סמואל 10"),
+          LocationWidget(Colors.black, "Israel", "Jerusalem", "בלפור 7"),
+          LocationWidget(
+              Colors.black, "Israel", "Be'er Sheva", "יצחק אבינו 13"),
+          LocationWidget(Colors.black, "Israel", "Ramat Gan", "אלכסנדר 8"),
+          LocationWidget(Colors.black, "Israel", "Dimona", "הר ארבל 10")
         ];
       } else {
         for (var i = 0; i < predictions.length && i < 6; i++) {
@@ -234,11 +232,11 @@ class _LocationState extends State<Location> {
                               maxLines: null,
                               expands: true,
                               keyboardType: TextInputType.emailAddress,
+                              controller: locationEditor,
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(
-                                    RegExp('[a-zA-Z\u0590-\u05fe]'))
+                                    RegExp('[a-zA-Z0-9]'))
                               ],
-                              controller: locationEditor,
                               scrollPadding: EdgeInsets.only(top: 15),
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -248,16 +246,10 @@ class _LocationState extends State<Location> {
                                   fontSize: 19),
                               decoration: InputDecoration(
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: const BorderRadius.all(
-                                      const Radius.circular(10.0),
-                                    ),
                                     borderSide: BorderSide(
                                         color: Colors.black, width: 2.5),
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderRadius: const BorderRadius.all(
-                                      const Radius.circular(10.0),
-                                    ),
                                     borderSide: BorderSide(
                                         color: Colors.black, width: 2.5),
                                   ),
@@ -338,10 +330,10 @@ class _LocationState extends State<Location> {
                                   children: <Widget>[
                                     Spacer(),
                                     Flexible(
-                                      flex: 2,
+                                      flex: 3,
                                       child: RaisedGradientButton(
                                         child: Text(
-                                          'Review Your ICTV',
+                                          'Review Fiber Test',
                                           style: TextStyle(
                                               fontStyle: FontStyle.normal,
                                               color: secondryColor,
@@ -371,100 +363,21 @@ class _LocationState extends State<Location> {
                                                   this.widget.indexWidget]
                                               .streetAndNumber;
 
-                                          String query = currCountry +
-                                              "," +
-                                              currCity +
-                                              "," +
-                                              currAddress;
-                                          try {
-                                            var addresses = await Geocoder.local
-                                                .findAddressesFromQuery(query);
-                                            coordinates =
-                                                addresses.first.coordinates;
-                                          } catch (e) {
-                                            logger.i(e);
-                                          }
-
                                           if (loggedIn) {
                                             logger.i(
-                                                "the user choose the location " +
+                                                "the user choose the location for fiber test" +
                                                     currCountry +
                                                     "/" +
                                                     currCity +
                                                     "/" +
                                                     currAddress);
-                                            if (userData["Address"] == "") {
-                                              await popAlert(
-                                                  "Choose Address",
-                                                  "You Wish To Update This Address As Yours ?",
-                                                  "No",
-                                                  "Yes",
-                                                  context);
-                                              if (locationIsUpdated) {
-                                                userData["Address"] =
-                                                    currCountry +
-                                                        "/" +
-                                                        currCity +
-                                                        "/" +
-                                                        currAddress;
-                                                DatabaseReference _reference =
-                                                    FirebaseDatabase.instance
-                                                        .reference()
-                                                        .child("Users" +
-                                                            "/" +
-                                                            userCredential
-                                                                .user.uid);
-                                                _reference.set(userData);
-                                                logger.i(
-                                                    "the user set his Address");
-                                              }
-                                            } else {
-                                              var addressArr =
-                                                  userData["Address"]
-                                                      .split('/');
-                                              if (addressArr[0] !=
-                                                      currCountry ||
-                                                  addressArr[1] != currCity ||
-                                                  addressArr[2] !=
-                                                      currAddress) {
-                                                await popAlert(
-                                                    "Wrong Address",
-                                                    "This Address Does Not Match Yours.\nYou Wish To Update This Address As Yours ?",
-                                                    "No",
-                                                    "Yes",
-                                                    context);
-                                                bool changeAddress =
-                                                    locationIsUpdated;
-                                                if (changeAddress) {
-                                                  userData["Address"] =
-                                                      currCountry +
-                                                          "/" +
-                                                          currCity +
-                                                          "/" +
-                                                          currAddress;
-                                                  DatabaseReference _reference =
-                                                      FirebaseDatabase.instance
-                                                          .reference()
-                                                          .child("Users" +
-                                                              "/" +
-                                                              userCredential
-                                                                  .user.uid);
-                                                  _reference.set(userData);
-                                                  locationIsUpdated = true;
-                                                  logger.i(
-                                                      "the user changed his Address");
-                                                } else {
-                                                  locationIsUpdated = false;
-                                                }
-                                              }
-                                            }
                                           }
 
                                           Navigator.pushReplacement(
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      ictvScreen()));
+                                                      fiberView()));
                                         },
                                       ),
                                     ),

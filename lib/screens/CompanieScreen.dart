@@ -10,7 +10,6 @@ import 'package:ictv/widgets/buildMenu.dart';
 import 'package:liquid_ui/liquid_ui.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../credentials.dart';
 import '../main.dart';
 
@@ -58,7 +57,8 @@ class _Companies_screenState extends State<Companies_screen> {
     'https://upload.wikimedia.org/wikipedia/he/thumb/3/3f/Bezeq_logo.svg/442px-Bezeq_logo.svg.png',
     'https://www.leaderim.com/wp-content/uploads/2020/02/Partner-logo-2016.png',
     "https://img.wcdn.co.il/f_auto,w_1400,t_54/2/7/1/0/2710567-46.png",
-    "https://simpel.co.il/wp-content/uploads/thumbs/ramilevilogo-page-ng9en8eixvujtxphsdx73333iuku47ovelkzqewhbg.png"
+    "https://simpel.co.il/wp-content/uploads/thumbs/ramilevilogo-page-ng9en8eixvujtxphsdx73333iuku47ovelkzqewhbg.png",
+    "https://www.ccc.co.il/UploadedImages/12_2014/LogoAboutUs.png",
   ];
   List<String> urlList = [
     'https://www.kamaze.co.il/Companies/6372/Yes',
@@ -66,7 +66,8 @@ class _Companies_screenState extends State<Companies_screen> {
     'https://www.kamaze.co.il/Companies/6244/Bezeq',
     'https://www.kamaze.co.il/Companies/6236/Partner',
     "https://www.kamaze.co.il/Companies/6252/Golan-Telecom",
-    "https://www.kamaze.co.il/Companies/6238/Ramy-Levi"
+    "https://www.kamaze.co.il/Companies/6238/Ramy-Levi",
+    "https://www.kamaze.co.il/Companies/6249/Triple-C"
   ];
 
   var boolList = [
@@ -76,6 +77,7 @@ class _Companies_screenState extends State<Companies_screen> {
     [true, true, true],
     [false, true, false],
     [false, true, false],
+    [true, false, false],
   ];
 
   @override
@@ -243,9 +245,9 @@ class _Companies_screenState extends State<Companies_screen> {
                                   style: TextStyle(
                                       shadows: <Shadow>[
                                         Shadow(
-                                          offset: Offset(1.5, 1.5),
-                                          blurRadius: 2.2,
-                                          color: Colors.black,
+                                          offset: Offset(2, 2),
+                                          blurRadius: 3.3,
+                                          color: Colors.grey,
                                         ),
                                       ],
                                       fontSize: 34,

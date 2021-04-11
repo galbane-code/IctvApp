@@ -14,7 +14,8 @@ import '../credentials.dart';
 Map<String, CompanyPost> companies = {
   "bezeq": CompanyPost(1.0, 1),
   "hot": CompanyPost(1.0, 1),
-  "partner": CompanyPost(1.0, 1)
+  "partner": CompanyPost(1.0, 1),
+  "tripleC": CompanyPost(1.0, 1),
 };
 
 class InternetTab extends StatelessWidget {
@@ -212,9 +213,9 @@ class _InternetState extends State<Internet> {
                               style: TextStyle(
                                   shadows: <Shadow>[
                                     Shadow(
-                                      offset: Offset(1.5, 1.5),
-                                      blurRadius: 2.2,
-                                      color: Colors.black,
+                                      offset: Offset(2, 2),
+                                      blurRadius: 3.3,
+                                      color: Colors.grey,
                                     ),
                                   ],
                                   fontSize: 33,
@@ -230,9 +231,9 @@ class _InternetState extends State<Internet> {
                               style: TextStyle(
                                   shadows: <Shadow>[
                                     Shadow(
-                                      offset: Offset(1.5, 1.5),
-                                      blurRadius: 2.2,
-                                      color: Colors.black,
+                                      offset: Offset(2, 2),
+                                      blurRadius: 3.3,
+                                      color: Colors.grey,
                                     ),
                                   ],
                                   fontSize: 33,

@@ -205,9 +205,9 @@ class _CellularState extends State<Cellular> {
                               style: TextStyle(
                                   shadows: <Shadow>[
                                     Shadow(
-                                      offset: Offset(1.5, 1.5),
-                                      blurRadius: 2.2,
-                                      color: Colors.black,
+                                      offset: Offset(2, 2),
+                                      blurRadius: 3.3,
+                                      color: Colors.grey,
                                     ),
                                   ],
                                   fontSize: 33,
@@ -223,9 +223,9 @@ class _CellularState extends State<Cellular> {
                               style: TextStyle(
                                   shadows: <Shadow>[
                                     Shadow(
-                                      offset: Offset(1.5, 1.5),
-                                      blurRadius: 2.2,
-                                      color: Colors.black,
+                                      offset: Offset(2, 2),
+                                      blurRadius: 3.3,
+                                      color: Colors.grey,
                                     ),
                                   ],
                                   fontSize: 33,

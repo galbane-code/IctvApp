@@ -3,6 +3,7 @@ import 'package:bordered_text/bordered_text.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ictv/functions/SignInFunc.dart';
 import 'package:ictv/functions/SignUpFunc.dart';
@@ -149,12 +150,14 @@ class _SignInScreenState extends State<SignInScreen> {
                       flex: 9,
                     ),
                     Flexible(
-                      flex: 17,
+                      flex: 18,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
-                          Spacer(),
+                          Spacer(
+                            flex: 2,
+                          ),
                           Flexible(
                               flex: 7,
                               child: Image(
@@ -171,18 +174,18 @@ class _SignInScreenState extends State<SignInScreen> {
                                     style: TextStyle(
                                         shadows: <Shadow>[
                                           Shadow(
-                                            offset: Offset(1.5, 1.5),
-                                            blurRadius: 2.2,
-                                            color: Colors.black,
+                                            offset: Offset(2, 2),
+                                            blurRadius: 3.3,
+                                            color: Colors.grey,
                                           ),
                                         ],
-                                        fontSize: 45,
+                                        fontSize: 46,
                                         color: primaryColor,
                                         decoration: TextDecoration.none,
                                         decorationColor: Colors.white),
                                   ))),
                           Spacer(
-                            flex: 4,
+                            flex: 5,
                           ),
                           Flexible(
                               flex: 8,
@@ -214,7 +217,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                     Spacer(
-                      flex: 5,
+                      flex: 6,
                     ),
                     Flexible(
                         flex: 8,
@@ -248,19 +251,25 @@ class _SignInScreenState extends State<SignInScreen> {
                                   expands: true,
                                   keyboardType: TextInputType.emailAddress,
                                   controller: user,
-                                  scrollPadding: EdgeInsets.only(top: 15),
+                                  scrollPadding: EdgeInsets.only(top: 13),
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                       fontStyle: FontStyle.normal,
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 19),
+                                      fontSize: 18),
                                   decoration: InputDecoration(
                                       focusedBorder: OutlineInputBorder(
+                                        borderRadius: const BorderRadius.all(
+                                          const Radius.circular(10.0),
+                                        ),
                                         borderSide: BorderSide(
                                             color: Colors.grey, width: 2.5),
                                       ),
                                       enabledBorder: OutlineInputBorder(
+                                        borderRadius: const BorderRadius.all(
+                                          const Radius.circular(10.0),
+                                        ),
                                         borderSide: BorderSide(
                                             color: Colors.grey, width: 2.5),
                                       ),
@@ -284,7 +293,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       flex: 1,
                     ),
                     Flexible(
-                        flex: 9,
+                        flex: 10,
                         child: Row(
                           children: <Widget>[
                             Spacer(),
@@ -338,10 +347,16 @@ class _SignInScreenState extends State<SignInScreen> {
                                         },
                                       ),
                                       focusedBorder: OutlineInputBorder(
+                                        borderRadius: const BorderRadius.all(
+                                          const Radius.circular(10.0),
+                                        ),
                                         borderSide: BorderSide(
                                             color: Colors.grey, width: 2.5),
                                       ),
                                       enabledBorder: OutlineInputBorder(
+                                        borderRadius: const BorderRadius.all(
+                                          const Radius.circular(10.0),
+                                        ),
                                         borderSide: BorderSide(
                                             color: Colors.grey, width: 2.5),
                                       ),
@@ -401,10 +416,10 @@ class _SignInScreenState extends State<SignInScreen> {
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10)),
+                                      topLeft: Radius.circular(18),
+                                      topRight: Radius.circular(18),
+                                      bottomLeft: Radius.circular(18),
+                                      bottomRight: Radius.circular(18)),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.5),
@@ -530,10 +545,10 @@ class _SignInScreenState extends State<SignInScreen> {
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10)),
+                                      topLeft: Radius.circular(18),
+                                      topRight: Radius.circular(18),
+                                      bottomLeft: Radius.circular(18),
+                                      bottomRight: Radius.circular(18)),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.5),
@@ -560,7 +575,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                                 child: Image(
                                                   image: AssetImage(
                                                       "assets/google.png"),
-                                                  fit: BoxFit.fitHeight,
+                                                  fit: BoxFit.scaleDown,
                                                 ),
                                               ),
                                               Spacer(
@@ -633,7 +648,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ],
                         )),
                     Spacer(
-                      flex: 4,
+                      flex: 2,
                     )
                   ],
                 )

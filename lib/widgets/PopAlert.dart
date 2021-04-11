@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../ColorsProject.dart';
 
 // ignore: non_constant_identifier_names
 void PopAlert(String title, String alertext, String leftbuttom,
@@ -14,11 +15,13 @@ void PopAlert(String title, String alertext, String leftbuttom,
           content: Text(alertext),
           actions: <Widget>[
             FlatButton(
+                highlightColor: primaryColor,
                 onPressed: () {
                   Navigator.of(ctx).pop();
                 },
                 child: Text(leftbuttom)),
             FlatButton(
+                highlightColor: primaryColor,
                 onPressed: () {
                   Navigator.of(ctx).pop();
                 },

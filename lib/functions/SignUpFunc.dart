@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ictv/ColorsProject.dart';
 import '../credentials.dart';
 
 /*
@@ -50,11 +51,13 @@ void signUp(user, password, context, name, gender) async {
               content: Text(e.toString().substring(30)),
               actions: <Widget>[
                 FlatButton(
+                    highlightColor: primaryColor,
                     onPressed: () {
                       Navigator.of(ctx).pop();
                     },
                     child: Text("Cancel")),
                 FlatButton(
+                    highlightColor: primaryColor,
                     onPressed: () {
                       emailS = "";
                       passwordS = "";

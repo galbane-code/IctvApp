@@ -1,6 +1,7 @@
 import 'package:bordered_text/bordered_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ictv/functions/SignUpFunc.dart';
 import 'package:ictv/functions/connection.dart';
 import 'package:ictv/widgets/GenderSelector.dart';
@@ -142,9 +143,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                     style: TextStyle(
                                         shadows: <Shadow>[
                                           Shadow(
-                                            offset: Offset(1.5, 1.5),
-                                            blurRadius: 2.2,
-                                            color: Colors.black,
+                                            offset: Offset(2, 2),
+                                            blurRadius: 3.3,
+                                            color: Colors.grey,
                                           ),
                                         ],
                                         fontSize: 42,
@@ -208,10 +209,16 @@ class _SignUpPageState extends State<SignUpPage> {
                                       fontSize: 15),
                                   decoration: InputDecoration(
                                       focusedBorder: OutlineInputBorder(
+                                        borderRadius: const BorderRadius.all(
+                                          const Radius.circular(10.0),
+                                        ),
                                         borderSide: BorderSide(
                                             color: Colors.grey, width: 2.5),
                                       ),
                                       enabledBorder: OutlineInputBorder(
+                                        borderRadius: const BorderRadius.all(
+                                          const Radius.circular(10.0),
+                                        ),
                                         borderSide: BorderSide(
                                             color: Colors.grey, width: 2.5),
                                       ),
@@ -289,10 +296,16 @@ class _SignUpPageState extends State<SignUpPage> {
                                         },
                                       ),
                                       focusedBorder: OutlineInputBorder(
+                                        borderRadius: const BorderRadius.all(
+                                          const Radius.circular(10.0),
+                                        ),
                                         borderSide: BorderSide(
                                             color: Colors.grey, width: 2.5),
                                       ),
                                       enabledBorder: OutlineInputBorder(
+                                        borderRadius: const BorderRadius.all(
+                                          const Radius.circular(10.0),
+                                        ),
                                         borderSide: BorderSide(
                                             color: Colors.grey, width: 2.5),
                                       ),
@@ -356,10 +369,16 @@ class _SignUpPageState extends State<SignUpPage> {
                                       fontSize: 15),
                                   decoration: InputDecoration(
                                       focusedBorder: OutlineInputBorder(
+                                        borderRadius: const BorderRadius.all(
+                                          const Radius.circular(10.0),
+                                        ),
                                         borderSide: BorderSide(
                                             color: Colors.grey, width: 2.5),
                                       ),
                                       enabledBorder: OutlineInputBorder(
+                                        borderRadius: const BorderRadius.all(
+                                          const Radius.circular(10.0),
+                                        ),
                                         borderSide: BorderSide(
                                             color: Colors.grey, width: 2.5),
                                       ),
@@ -402,10 +421,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10)),
+                                      topLeft: Radius.circular(18),
+                                      topRight: Radius.circular(18),
+                                      bottomLeft: Radius.circular(18),
+                                      bottomRight: Radius.circular(18)),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.5),

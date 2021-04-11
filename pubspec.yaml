@@ -54,8 +54,10 @@ dependencies:
   toast: ^0.1.5
   logger: ^0.9.4
   url_launcher: ^5.7.4
+  translator: ^0.1.5
+  transparent_image: ^1.0.0
 
-
+  
 
 dev_dependencies:
   flutter_test:

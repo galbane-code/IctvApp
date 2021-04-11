@@ -86,6 +86,7 @@ class _TvState extends State<Tv> {
                           Flexible(
                             flex: 6,
                             child: InkWell(
+                              highlightColor: primaryColor,
                               onTap: () async {
                                 if (rate) {
                                   await rating(context, key, _reference,
@@ -205,9 +206,9 @@ class _TvState extends State<Tv> {
                               style: TextStyle(
                                   shadows: <Shadow>[
                                     Shadow(
-                                      offset: Offset(1.5, 1.5),
-                                      blurRadius: 2.2,
-                                      color: Colors.black,
+                                      offset: Offset(2, 2),
+                                      blurRadius: 3.3,
+                                      color: Colors.grey,
                                     ),
                                   ],
                                   fontSize: 33,
@@ -223,9 +224,9 @@ class _TvState extends State<Tv> {
                               style: TextStyle(
                                   shadows: <Shadow>[
                                     Shadow(
-                                      offset: Offset(1.5, 1.5),
-                                      blurRadius: 2.2,
-                                      color: Colors.black,
+                                      offset: Offset(2, 2),
+                                      blurRadius: 3.3,
+                                      color: Colors.grey,
                                     ),
                                   ],
                                   fontSize: 33,

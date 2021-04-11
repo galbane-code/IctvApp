@@ -3,6 +3,7 @@ import 'package:ictv/ColorsProject.dart';
 import 'package:ictv/functions/connection.dart';
 import 'package:ictv/screens/CompanieScreen.dart';
 import 'package:ictv/screens/SignInScreen.dart';
+import 'package:ictv/screens/fiberSearch.dart';
 import 'package:ictv/screens/locationScreen.dart';
 import 'package:ictv/screens/signUpPage.dart';
 import 'package:ictv/widgets/GenderSelector.dart';
@@ -145,6 +146,27 @@ Widget buildMenu(context, _sideMenuKey) {
           },
           leading: Icon(Icons.list_rounded, size: 20.0, color: primaryColor),
           title: Text("List Of Companies"),
+          textColor: Colors.black,
+          dense: true,
+
+          // padding: EdgeInsets.zero,
+        ),
+        LListItem(
+          backgroundColor: Colors.transparent,
+          onTap: () {
+            final _state = sidemenu.currentState;
+            _state.closeSideMenu();
+            Future.delayed(const Duration(milliseconds: 500), () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => FiberTest()));
+            });
+          },
+          leading: ImageIcon(
+            AssetImage("assets/optic.png"),
+            size: 20.0,
+            color: primaryColor,
+          ),
+          title: Text("Fiber Test"),
           textColor: Colors.black,
           dense: true,
 
