@@ -18,10 +18,9 @@ Also the user can check his address if there is a fiber optic infrastructure in 
 
 
 
-# Fiber Test Client  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Fiber Test Server
+# Fiber Test Client  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fiber Test Server
 
-![](https://media.giphy.com/media/7uJNT1tPx0wzFpXak1/giphy.gif) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      <img src="https://media.giphy.com/media/PWljdo5XX4OcRtiiIk/giphy.gif" width="500" height="480" />
-
+![](https://media.giphy.com/media/7uJNT1tPx0wzFpXak1/giphy.gif) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      <img src="https://media.giphy.com/media/PWljdo5XX4OcRtiiIk/giphy.gif" width="480" height="480" />
 
 
 
