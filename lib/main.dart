@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ictv/screens/OnBoardingScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:ictv/screens/SignInScreen.dart';
 import 'package:logger/logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // the log of the app
 var logger = Logger(
@@ -10,6 +12,8 @@ var logger = Logger(
   printer: PrettyPrinter(),
   output: null,
 );
+
+var first_enter;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,8 +52,28 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: OnboardingScreen(),
+    return FutureBuilder(
+      future: pageLoad(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Container(
+            child: first_enter ? SignIn() : OnboardingScreen(),
+          );
+        } else {
+          return Container();
+        }
+      },
     );
   }
+}
+
+Future<bool> pageLoad() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  first_enter = prefs.get("first_enter");
+  if (first_enter == null || !first_enter) {
+    prefs.setBool("first_enter", true);
+    first_enter = false;
+    return true;
+  }
+  return true;
 }
